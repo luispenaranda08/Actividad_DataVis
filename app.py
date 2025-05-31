@@ -3,6 +3,7 @@ import sqlite3
 import dash
 from dash import dcc, html, Input, Output
 import plotly.express as px
+import os
 
 # 1. Cargar datos desde SQLite
 conn = sqlite3.connect("mi_base.db")
@@ -77,4 +78,5 @@ def actualizar_grafico(variable, ciudad):
 
 # 6. Ejecutar servidor
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8050))
+    app.run(host="0.0.0.0", port=port, debug=True)
